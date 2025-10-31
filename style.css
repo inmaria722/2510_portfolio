@@ -71,6 +71,8 @@
   font-display: swap;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap");
+
 body {
   font-family: "Pretendard";
 }
@@ -80,6 +82,10 @@ body {
 * {
   box-sizing: border-box;
   color: #504539;
+}
+
+svg {
+  display: block;
 }
 
 section {
@@ -95,9 +101,16 @@ section {
   margin: 0 auto;
 }
 
+.img-box {
+  width: 100%;
+  height: 100%;
+}
+
 img {
   display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .title-box {
@@ -223,5 +236,150 @@ img {
   font-size: 16px;
 }
 /* ---------- profile-box end ---------- */
+/* ---------- project-list-box start ---------- */
+.project-list-box {
+  position: relative;
+  background-color: transparent;
+}
+
+.project-list-box > .bg-paper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.project-list-box .title-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 30px;
+  margin-bottom: 0;
+}
+
+.project-list-box .title-box .title {
+  font-size: 44px;
+}
+
+.project-list-box .title-box .title > span:last-child {
+  font-family: "Nanum Myeongjo", serif;
+  font-weight: 300;
+}
+
+.project-list-box .title-box .list-btn {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  border: 1px solid #504539;
+  border-radius: 550px;
+  cursor: pointer;
+}
+
+.project-list-box .title-box .list-btn div:first-child {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+.project-list-box .title-box .list-btn div:last-child {
+  padding-right: 10px;
+  padding-left: 5px;
+  border-left: 1px solid rgba(80, 69, 57, 0.3);
+}
+
+.project-list-box .main-box {
+  padding: 30px 0;
+  border-top: 1px solid #504539;
+  border-bottom: 1px solid #504539;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.project-list-box .main-box .project-item {
+  height: 370px;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-list-box .main-box .project-item {
+  height: 370px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.project-list-box .main-box .project-item .desc-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px 25px;
+}
+
+.project-list-box .main-box .project-item:hover .desc-box {
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-list-box .main-box .project-item .desc-box span {
+  color: #fff !important;
+}
+
+.project-list-box .main-box .project-item .desc-box .p-type {
+  text-align: right;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.project-list-box .main-box .project-item .desc-box .p-info > div:first-child {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.project-list-box .main-box .project-item .desc-box .p-info > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 300;
+  opacity: 0.6;
+  margin: 6px 0 20px 0;
+}
+
+.project-list-box .main-box .project-item .desc-box .p-info .p-btn-box {
+  display: flex;
+  gap: 14px;
+  font-size: 14px;
+}
+
+.project-list-box .main-box .project-item .desc-box .p-info .p-btn-box .p-btn {
+  border: 1px solid #fff;
+  border-radius: 50px;
+  transition: all 0.5s ease;
+}
+
+.project-list-box .main-box .project-item .desc-box .p-btn-box .p-btn a {
+  display: block;
+  padding: 5px 20px;
+}
+
+.project-list-box .main-box .project-item .desc-box .p-info .p-btn:hover {
+  background-color: #fff;
+}
+
+.project-list-box .main-box .project-item .desc-box .p-info .p-btn:hover span {
+  color: #504539 !important;
+}
+/* ---------- project-list-box end ---------- */
 
 /* ---------- custom end ---------- */
