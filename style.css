@@ -236,7 +236,8 @@ img {
   font-size: 16px;
 }
 /* ---------- profile-box end ---------- */
-/* ---------- project-list-box start ---------- */
+
+/* ---------- project-list-box (img) start ---------- */
 .project-list-box {
   position: relative;
   background-color: transparent;
@@ -246,7 +247,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.2;
+  opacity: 0.15;
   z-index: -1;
 }
 
@@ -289,28 +290,31 @@ img {
 }
 
 .project-list-box .main-box {
-  padding: 30px 0;
   border-top: 1px solid #504539;
   border-bottom: 1px solid #504539;
+}
+
+.project-img-ver .main-box {
+  padding: 30px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-.project-list-box .main-box .project-item {
+.project-img-ver .main-box .project-item {
   height: 370px;
   overflow: hidden;
   position: relative;
 }
 
-.project-list-box .main-box .project-item {
+.project-img-ver .main-box .project-item {
   height: 370px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
 }
 
-.project-list-box .main-box .project-item .desc-box {
+.project-img-ver .main-box .project-item .desc-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -326,27 +330,27 @@ img {
   padding: 25px 25px;
 }
 
-.project-list-box .main-box .project-item:hover .desc-box {
+.project-img-ver .main-box .project-item:hover .desc-box {
   opacity: 1;
   visibility: visible;
 }
 
-.project-list-box .main-box .project-item .desc-box span {
-  color: #fff !important;
+.project-img-ver .main-box .project-item .desc-box span {
+  color: #fefdf8;
 }
 
-.project-list-box .main-box .project-item .desc-box .p-type {
+.project-img-ver .main-box .project-item .desc-box .p-type {
   text-align: right;
   font-size: 14px;
   opacity: 0.5;
 }
 
-.project-list-box .main-box .project-item .desc-box .p-info > div:first-child {
+.project-img-ver .main-box .project-item .desc-box .p-info > div:first-child {
   font-size: 22px;
   font-weight: 500;
 }
 
-.project-list-box .main-box .project-item .desc-box .p-info > div:nth-child(2) {
+.project-img-ver .main-box .project-item .desc-box .p-info > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -356,30 +360,110 @@ img {
   margin: 6px 0 20px 0;
 }
 
-.project-list-box .main-box .project-item .desc-box .p-info .p-btn-box {
+/* p-btn-box */
+.project-list-box .p-btn-box {
   display: flex;
   gap: 14px;
   font-size: 14px;
 }
 
-.project-list-box .main-box .project-item .desc-box .p-info .p-btn-box .p-btn {
-  border: 1px solid #fff;
+.project-list-box .main-box .p-btn-box .p-btn {
+  border: 1px solid #fefdf8;
   border-radius: 50px;
   transition: all 0.5s ease;
 }
 
-.project-list-box .main-box .project-item .desc-box .p-btn-box .p-btn a {
+.project-list-box .main-box .p-btn-box .p-btn a {
   display: block;
   padding: 5px 20px;
 }
 
-.project-list-box .main-box .project-item .desc-box .p-info .p-btn:hover {
+.project-img-ver .main-box .project-item .desc-box .p-info .p-btn:hover {
+  background-color: #fefdf8;
+}
+
+.project-img-ver .main-box .project-item .desc-box .p-info .p-btn:hover span {
+  color: #504539 !important;
+}
+/* ---------- project-list-box (img) end ---------- */
+
+/* ---------- project-list-box (text) start ---------- */
+.project-text-ver .main-box .t-project-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.project-text-ver .main-box .t-project-item:not(:last-child) {
+  border-bottom: 1px solid #504539;
+}
+
+.project-text-ver .main-box .t-project-item .left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.project-text-ver .main-box .t-project-item .left .num {
+  width: 87px;
+}
+
+.project-text-ver .main-box .t-project-item .left span:nth-child(2) {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.project-text-ver .main-box .t-project-item .left span:last-child {
+  opacity: 0.4;
+}
+
+/* show/hide */
+.project-text-ver .main-box .t-project-item .right {
+  display: block;
+  font-size: 20px;
+}
+
+.project-text-ver .main-box .t-project-item .right span:not(:last-child) {
+  margin-right: 10px;
+}
+
+.project-text-ver .main-box .t-project-item:hover .right {
+  display: none;
+}
+
+.project-text-ver .main-box .t-project-item .p-btn-box {
+  display: none;
+}
+
+.project-text-ver .main-box .t-project-item:hover .p-btn-box {
+  display: block;
+}
+
+/* p-btn */
+.project-text-ver .main-box .t-project-item .p-btn-box .p-btn {
+  border: 1px solid #504539;
+  font-size: 18px;
   background-color: #fff;
 }
 
-.project-list-box .main-box .project-item .desc-box .p-info .p-btn:hover span {
-  color: #504539 !important;
+.project-text-ver .main-box .t-project-item .p-btn-box .p-btn:first-child {
+  margin-right: 10px;
 }
-/* ---------- project-list-box end ---------- */
+
+/* btn:hover */
+.project-text-ver .main-box .t-project-item .p-btn-box .p-btn:hover {
+  background-color: #504539;
+}
+
+.project-text-ver .main-box .p-btn-box .p-btn:hover span {
+  color: #fefdf8;
+}
+/* ---------- project-list-box (text) end ---------- */
 
 /* ---------- custom end ---------- */
