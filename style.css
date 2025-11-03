@@ -71,6 +71,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "ChiaroscuraTRIAL";
+  src: url("./chiaroscura-trial-webfont/ChiaroscuraTRIAL-Rg.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap");
 
 body {
@@ -511,7 +520,7 @@ img {
 }
 
 .project-box .con .right .box-1 {
-  padding: 25px 0 55px 0;
+  padding: 25px 0 40px 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -520,7 +529,8 @@ img {
 
 .project-box .con .right .box-1 span:first-child {
   font-size: 50px;
-  font-weight: 500;
+  font-weight: 400;
+  font-family: "ChiaroscuraTRIAL";
 }
 
 .project-box .con .right .box-1 span:last-child {
@@ -596,5 +606,82 @@ img {
   align-items: center;
 }
 /* ---------- project-box end ---------- */
+
+/* ---------- footer start ---------- */
+footer {
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: transparent;
+  position: relative;
+}
+
+footer .con {
+  padding: 100px 0;
+}
+
+footer .bg-star-big {
+  position: absolute;
+  top: 135px;
+  left: -140px;
+  opacity: 0.03;
+}
+
+footer .con .box-1 {
+  height: 640px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+footer .con .box-1 .top {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .con .box-1 .top .top-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer .con .box-1 .top .top-left > span:first-child {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+footer .con .box-1 .top .top-left > span:last-child {
+  font-size: 20px;
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+footer .con .box-1 .top .top-right {
+  font-size: 20px;
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+footer .con .box-1 .bottom {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+footer .con .box-1 .bottom > div:first-child {
+  margin-bottom: 10px;
+}
+
+footer .con .box-1 .bottom > div > span:first-child {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+footer .con .box-2 {
+  padding-top: 30px;
+  border-top: 1px solid #504539;
+  font-size: 18px;
+  font-weight: 500;
+}
+/* ---------- footer end ---------- */
 
 /* ---------- custom end ---------- */
