@@ -463,6 +463,11 @@ header ul a:hover {
 .project-text-ver .main-box .t-project-item .left span:nth-child(2) {
   font-size: 30px;
   font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.project-text-ver .main-box .t-project-item:hover .left span:nth-child(2) {
+  color: #ff8d28;
 }
 
 .project-text-ver .main-box .t-project-item .left span:last-child {
