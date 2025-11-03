@@ -138,6 +138,43 @@ img {
 /* ---------- base end ---------- */
 
 /* ---------- custom start ---------- */
+
+/* ---------- header start ---------- */
+header {
+  width: 100vw;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: #fff;
+}
+
+header > div {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+header > ul {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+header ul a {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+header ul a:hover {
+  opacity: 1;
+}
+/* ---------- header end ---------- */
+
 /* ---------- profile-box start ---------- */
 .profile-box .main-box {
   display: flex;
@@ -157,9 +194,9 @@ img {
 
 .profile-box .main-box .left .img-box .star {
   position: absolute;
-  top: -140px;
-  left: -140px;
-  transform: scale(0.4);
+  top: -20px;
+  left: -25px;
+  opacity: 0.3;
 }
 
 .profile-box .main-box .left .img-box .profile-img {
