@@ -243,7 +243,7 @@ img {
   background-color: transparent;
 }
 
-.project-list-box > .bg-paper {
+.paper-box .bg-paper {
   position: absolute;
   top: 0;
   left: 0;
@@ -465,5 +465,136 @@ img {
   color: #fefdf8;
 }
 /* ---------- project-list-box (text) end ---------- */
+
+/* ---------- project-box start ---------- */
+.project-box {
+  position: relative;
+  background-color: transparent;
+}
+
+.project-box .bg-paper {
+  opacity: 0.15;
+  z-index: -1;
+}
+
+.project-box .bg-star-big {
+  position: absolute;
+  right: -100px;
+  top: 30%;
+  z-index: 1;
+  opacity: 0.03;
+}
+
+.project-box .con {
+  padding: 100px 0;
+  display: flex;
+  gap: 20px;
+}
+
+.project-box .con .left,
+.project-box .con .right {
+  width: 50%;
+  height: 900px;
+}
+
+.project-box .con .left {
+  padding-right: 50px;
+}
+
+.project-box .con .right {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-box .con .left .img-box img {
+  object-position: center top;
+}
+
+.project-box .con .right .box-1 {
+  padding: 25px 0 55px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #504539;
+}
+
+.project-box .con .right .box-1 span:first-child {
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.project-box .con .right .box-1 span:last-child {
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.project-box .con .right .box-2 {
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.project-box .con .right .box-2 > span {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.project-box .con .right .box-2 .info-box {
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.project-box .con .right .box-2 .info-box .info-left,
+.project-box .con .right .box-2 .info-box .info-right {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.project-box .con .right .box-2 .info-box .info-right {
+  font-weight: 300;
+}
+
+.project-box .p-btn-box {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.project-box .p-btn-box .p-btn {
+  border: 1px solid #504539;
+  border-radius: 50px;
+  transition: all 0.5s ease;
+}
+
+.project-box .p-btn-box .p-btn a {
+  display: block;
+  padding: 8px 30px;
+}
+
+.project-box .p-btn-box .p-btn:hover {
+  background-color: #504539;
+}
+
+.project-box .p-btn-box .p-btn:hover span {
+  color: #fefdf8;
+}
+
+.project-box .con .right .box-3 {
+  padding-top: 30px;
+  gap: 10px;
+  border-top: 1px solid #504539;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+/* ---------- project-box end ---------- */
 
 /* ---------- custom end ---------- */
