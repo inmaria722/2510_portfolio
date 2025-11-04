@@ -297,7 +297,7 @@ header ul a:hover {
   z-index: -1;
 }
 
-.project-list-box .title-box {
+.project-list-box .project-title-box {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -305,62 +305,112 @@ header ul a:hover {
   margin-bottom: 0;
 }
 
-.project-list-box .title-box .title {
-  font-size: 44px;
+.project-list-box .project-title-box .title {
+  font-size: 46px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.project-list-box .title-box .title > span:last-child {
+.project-list-box .project-title-box .title > span:first-child {
+  animation: title-star 5s linear infinite;
+}
+
+.project-list-box .project-title-box .title > span:last-child {
   font-family: "Nanum Myeongjo", serif;
   font-weight: 300;
 }
 
-.project-list-box .title-box .list-btn {
+@keyframes title-star {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* list-btn */
+.project-list-box .project-title-box .list-btn {
   width: fit-content;
   height: fit-content;
   display: flex;
   align-items: center;
   border: 1px solid #504539;
   border-radius: 550px;
-  cursor: pointer;
+  overflow: hidden;
 }
 
-.project-list-box .title-box .list-btn div:first-child {
+.project-list-box .project-title-box .list-btn button {
+  cursor: pointer;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.project-list-box .project-title-box .list-btn button:first-child {
   padding-left: 10px;
   padding-right: 5px;
 }
 
-.project-list-box .title-box .list-btn div:last-child {
+.project-list-box .project-title-box .list-btn button:last-child {
   padding-right: 10px;
   padding-left: 5px;
   border-left: 1px solid rgba(80, 69, 57, 0.3);
 }
 
-.project-list-box .main-box {
+/* list-btn .active */
+.project-img-ver,
+.project-text-ver {
+  display: none;
+}
+
+.project-img-ver.active,
+.project-text-ver.active {
+  display: block;
+}
+
+/* 3. (가장 중요) 부모(.con)가 탭 높이에 맞게 늘어나도록 함 */
+.project-list-box .con {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* 4. (참고) .list-btn .active 코드는 .title-box 선택자에 있어야 합니다 */
+.project-title-box .list-btn button.active {
+  background-color: #504539;
+}
+
+.project-title-box .list-btn button.active svg > path {
+  fill: #fefdf8;
+}
+
+.project-list-box .border-box .main-box {
   border-top: 1px solid #504539;
   border-bottom: 1px solid #504539;
 }
 
-.project-img-ver .main-box {
+.project-list-box .project-img-ver .main-box {
   padding: 30px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-.project-img-ver .main-box .project-item {
+.project-list-box .project-img-ver .main-box .project-item {
   height: 370px;
   overflow: hidden;
   position: relative;
 }
 
-.project-img-ver .main-box .project-item {
+.project-list-box .project-img-ver .main-box .project-item {
   height: 370px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
 }
 
-.project-img-ver .main-box .project-item .desc-box {
+.project-list-box .project-img-ver .main-box .project-item .desc-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -376,27 +426,39 @@ header ul a:hover {
   padding: 25px 25px;
 }
 
-.project-img-ver .main-box .project-item:hover .desc-box {
+.project-list-box .project-img-ver .main-box .project-item:hover .desc-box {
   opacity: 1;
   visibility: visible;
 }
 
-.project-img-ver .main-box .project-item .desc-box span {
+.project-list-box .project-img-ver .main-box .project-item .desc-box span {
   color: #fefdf8;
 }
 
-.project-img-ver .main-box .project-item .desc-box .p-type {
+.project-list-box .project-img-ver .main-box .project-item .desc-box .p-type {
   text-align: right;
   font-size: 14px;
   opacity: 0.5;
 }
 
-.project-img-ver .main-box .project-item .desc-box .p-info > div:first-child {
+.project-list-box
+  .project-img-ver
+  .main-box
+  .project-item
+  .desc-box
+  .p-info
+  > div:first-child {
   font-size: 22px;
   font-weight: 500;
 }
 
-.project-img-ver .main-box .project-item .desc-box .p-info > div:nth-child(2) {
+.project-list-box
+  .project-img-ver
+  .main-box
+  .project-item
+  .desc-box
+  .p-info
+  > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -434,7 +496,7 @@ header ul a:hover {
 /* ---------- project-list-box (img) end ---------- */
 
 /* ---------- project-list-box (text) start ---------- */
-.project-text-ver .main-box .t-project-item {
+.project-list-box .project-text-ver .main-box .t-project-item {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -444,11 +506,11 @@ header ul a:hover {
   cursor: pointer;
 }
 
-.project-text-ver .main-box .t-project-item:not(:last-child) {
+.project-list-box .project-text-ver .main-box .t-project-item:not(:last-child) {
   border-bottom: 1px solid #504539;
 }
 
-.project-text-ver .main-box .t-project-item .left {
+.project-list-box .project-text-ver .main-box .t-project-item .left {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -456,63 +518,98 @@ header ul a:hover {
   font-weight: 400;
 }
 
-.project-text-ver .main-box .t-project-item .left .num {
+.project-list-box .project-text-ver .main-box .t-project-item .left .num {
   width: 87px;
 }
 
-.project-text-ver .main-box .t-project-item .left span:nth-child(2) {
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item
+  .left
+  span:nth-child(2) {
   font-size: 30px;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
-.project-text-ver .main-box .t-project-item:hover .left span:nth-child(2) {
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item:hover
+  .left
+  span:nth-child(2) {
   color: #ff8d28;
 }
 
-.project-text-ver .main-box .t-project-item .left span:last-child {
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item
+  .left
+  span:last-child {
   opacity: 0.4;
 }
 
 /* show/hide */
-.project-text-ver .main-box .t-project-item .right {
+.project-list-box .project-text-ver .main-box .t-project-item .right {
   display: block;
   font-size: 20px;
 }
 
-.project-text-ver .main-box .t-project-item .right span:not(:last-child) {
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item
+  .right
+  span:not(:last-child) {
   margin-right: 10px;
 }
 
-.project-text-ver .main-box .t-project-item:hover .right {
+.project-list-box .project-text-ver .main-box .t-project-item:hover .right {
   display: none;
 }
 
-.project-text-ver .main-box .t-project-item .p-btn-box {
+.project-list-box .project-text-ver .main-box .t-project-item .p-btn-box {
   display: none;
 }
 
-.project-text-ver .main-box .t-project-item:hover .p-btn-box {
+.project-list-box .project-text-ver .main-box .t-project-item:hover .p-btn-box {
   display: block;
 }
 
 /* p-btn */
-.project-text-ver .main-box .t-project-item .p-btn-box .p-btn {
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item
+  .p-btn-box
+  .p-btn {
   border: 1px solid #504539;
   font-size: 18px;
   background-color: #fff;
 }
 
-.project-text-ver .main-box .t-project-item .p-btn-box .p-btn:first-child {
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item
+  .p-btn-box
+  .p-btn:first-child {
   margin-right: 10px;
 }
 
 /* btn:hover */
-.project-text-ver .main-box .t-project-item .p-btn-box .p-btn:hover {
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item
+  .p-btn-box
+  .p-btn:hover {
   background-color: #504539;
 }
 
-.project-text-ver .main-box .p-btn-box .p-btn:hover span {
+.project-list-box .project-text-ver .main-box .p-btn-box .p-btn:hover span {
   color: #fefdf8;
 }
 /* ---------- project-list-box (text) end ---------- */
