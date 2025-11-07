@@ -615,7 +615,8 @@ header ul a:hover {
 /* ---------- project-list-box (text) end ---------- */
 
 /* ---------- project-box start ---------- */
-.project-box {
+/* .project-box {
+  height: 100vh;
   position: relative;
   background-color: transparent;
 }
@@ -629,7 +630,7 @@ header ul a:hover {
   position: absolute;
   right: -100px;
   top: 30%;
-  z-index: 1;
+  z-index: -1;
   opacity: 0.03;
 }
 
@@ -637,16 +638,21 @@ header ul a:hover {
   padding: 100px 0;
   display: flex;
   gap: 20px;
+  height: 100%;
 }
 
 .project-box .con .left,
 .project-box .con .right {
   width: 50%;
-  height: 900px;
+  height: 100%;
 }
 
 .project-box .con .left {
   padding-right: 50px;
+}
+
+.project-box .con .swiper {
+  width: 50%;
 }
 
 .project-box .con .right {
@@ -678,13 +684,15 @@ header ul a:hover {
 }
 
 .project-box .con .right .box-2 {
-  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
   justify-content: flex-end;
   flex-grow: 1;
+  margin-bottom: 80px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #504539;
 }
 
 .project-box .con .right .box-2 > span {
@@ -714,7 +722,7 @@ header ul a:hover {
   display: flex;
   gap: 20px;
   font-size: 16px;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .project-box .p-btn-box .p-btn {
@@ -744,7 +752,39 @@ header ul a:hover {
   justify-content: flex-end;
   align-items: center;
 }
+
+.project-box .con .swiper-pagination {
+  padding-top: 30px;
+  text-align: right;
+} */
 /* ---------- project-box end ---------- */
+
+/* ---------- new project-box start ---------- */
+.project-box {
+  height: 100vh;
+}
+
+.project-box .con {
+  padding: 100px 0 0 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-box .con .left .text-box {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.project-box .con .left .text-box.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-box .con .right {
+  width: 936px;
+}
+/* ---------- new project-box end ---------- */
 
 /* ---------- footer start ---------- */
 footer {
