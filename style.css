@@ -82,6 +82,29 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap");
 
+@font-face {
+  font-family: "Didot LT Std Headline";
+  src: url("./transfonter.org-20250825-151240/DidotLTStd-Headline.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Georgia";
+  src: url("./georgia-2-webfont/georgiab.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("./product-sans-webfont/ProductSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: "Pretendard";
 }
@@ -370,13 +393,11 @@ header ul a:hover {
   display: block;
 }
 
-/* 3. (가장 중요) 부모(.con)가 탭 높이에 맞게 늘어나도록 함 */
 .project-list-box .con {
   height: auto !important;
   overflow: visible !important;
 }
 
-/* 4. (참고) .list-btn .active 코드는 .title-box 선택자에 있어야 합니다 */
 .project-title-box .list-btn button.active {
   background-color: #504539;
 }
@@ -761,17 +782,41 @@ header ul a:hover {
 
 /* ---------- new project-box start ---------- */
 .project-box {
+  position: relative;
   height: 100vh;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.project-box .bg-paper {
+  opacity: 0.15;
+  z-index: -1;
 }
 
 .project-box .con {
-  padding: 100px 0 0 0;
-  overflow: hidden;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 auto;
+  padding: 150px 0;
+  height: 100%;
+}
+
+.project-box .con .left {
+  width: 390px;
+  position: relative;
+  height: 100%;
 }
 
 .project-box .con .left .text-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   opacity: 0;
   visibility: hidden;
 }
@@ -781,8 +826,95 @@ header ul a:hover {
   visibility: visible;
 }
 
+.project-box .con .left .text-box p {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.project-box .con .left .text-box h1 {
+  font-size: 70px;
+  font-weight: 400;
+  color: #504539;
+}
+
+.project-box .con .left .text-box:first-child h1 {
+  font-family: "ChiaroscuraTRIAL";
+}
+
+.project-box .con .left .text-box:nth-child(2) h1 {
+  font-family: "Didot LT Std Headline";
+}
+
+.project-box .con .left .text-box:nth-child(3) h1 {
+  font-weight: 700;
+  font-size: 62px;
+  text-transform: lowercase;
+  font-family: "Georgia";
+}
+
+.project-box .con .left .text-box:nth-child(4) h1 {
+  font-weight: 500;
+}
+
+.project-box .con .left .text-box:nth-child(5) h1 {
+  font-weight: 700;
+  font-size: 70px;
+}
+
+.project-box .con .left .text-box:nth-child(6) h1 {
+  font-weight: 400;
+  font-size: 100px;
+  font-family: "Product Sans";
+}
+
+.project-box .con .left .text-box ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.project-box .con .left .text-box ul li {
+  font-size: 16px;
+  display: flex;
+  gap: 20px;
+}
+
+.project-box .con .left .text-box ul li strong {
+  width: 68px;
+}
+
 .project-box .con .right {
   width: 936px;
+  height: 100%;
+}
+
+.project-box .con .right .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.project-box .con .right .swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #504539;
+  opacity: 1;
+}
+
+.project-box .con .right .project-item {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-box .con .right .img-box {
+  height: 600px;
+  width: 100%;
 }
 /* ---------- new project-box end ---------- */
 

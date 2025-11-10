@@ -137,14 +137,73 @@ $(document).ready(function () {
   });
 });
 
-// project-box scroll
-// var swiper = new Swiper(".mySwiper", {
-//   pagination: {
-//     el: ".swiper-pagination",
-//     type: "fraction",
-//   },
-//   navigation: {
-//     nextEl: ".swiper-button-next",
-//     prevEl: ".swiper-button-prev",
-//   },
-// });
+// project-box
+$(document).ready(function () {
+  const $textBoxes = $(".project-box .con .left .text-box");
+
+  const swiper = new Swiper(".mySwiper", {
+    direction: "vertical",
+    slidesPerView: 1,
+    spaceBetween: 30,
+
+    autoplay: false,
+    mousewheel: false,
+    allowTouchMove: false,
+
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const slideCount = swiper.slides.length;
+  const pinDuration = (slideCount - 1) * 500;
+  let lastIndex = 0;
+
+  const st = ScrollTrigger.create({
+    trigger: ".project-box",
+    pin: true,
+    start: "top top",
+    end: () => "+=" + pinDuration,
+
+    scrub: 1,
+
+    snap: {
+      snapTo: 1 / (slideCount - 1),
+      duration: 0.6,
+      ease: "power1.inOut",
+    },
+
+    onUpdate: (self) => {
+      const activeIndex = Math.round(self.progress * (slideCount - 1));
+
+      if (activeIndex !== lastIndex) {
+        swiper.slideTo(activeIndex, 600);
+
+        $textBoxes.removeClass("active");
+        $textBoxes.eq(activeIndex).addClass("active");
+
+        lastIndex = activeIndex;
+      }
+    },
+  });
+
+  swiper.on("slideChange", function () {
+    const activeIndex = swiper.activeIndex;
+    if (activeIndex === lastIndex) {
+      return;
+    }
+
+    $textBoxes.removeClass("active");
+    $textBoxes.eq(activeIndex).addClass("active");
+
+    lastIndex = activeIndex;
+    const newProgress = activeIndex / (slideCount - 1);
+    const newScrollPos = st.start + newProgress * pinDuration;
+    window.scrollTo(0, newScrollPos);
+  });
+
+  $textBoxes.eq(0).addClass("active");
+});
