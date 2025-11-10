@@ -168,7 +168,7 @@ $(document).ready(function () {
     start: "top top",
     end: () => "+=" + pinDuration,
 
-    scrub: 1,
+    scrub: 0.3,
 
     snap: {
       snapTo: 1 / (slideCount - 1),
