@@ -762,6 +762,7 @@ header ul a:hover {
 .project-box .con .right .img-box {
   width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .project-box .con .right .img-box::after {
@@ -778,7 +779,7 @@ header ul a:hover {
 }
 
 .project-box .con .right .project-item:hover .img-box::after {
-  opacity: 0.7;
+  opacity: 0.4;
   visibility: visible;
 }
 
@@ -794,9 +795,11 @@ header ul a:hover {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 50%;
+  right: 25px;
+  bottom: 30px;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   transition: all 0.4s ease;
   z-index: 1;
 }
@@ -821,6 +824,50 @@ header ul a:hover {
 .swiper-pagination-bullet-active {
   background-color: #504539;
   opacity: 1;
+}
+
+/* cursor */
+.project-img-ver .project-item,
+.project-box .right .swiper .swiper-slide {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #ff8d28;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.1s ease-out, background-color 0.1s ease-out; /* 부드러운 전환 */
+}
+
+.custom-cursor .cursor-text {
+  opacity: 0;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.custom-cursor.custom-cursor-active {
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  opacity: 0.3;
+}
+
+.custom-cursor.custom-cursor-active .cursor-text {
+  opacity: 1;
+  color: #504539;
 }
 
 /* ---------- new project-box end ---------- */

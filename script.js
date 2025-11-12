@@ -207,3 +207,42 @@ $(document).ready(function () {
 
   $textBoxes.eq(0).addClass("active");
 });
+
+// cursor
+$(document).ready(function () {
+  const $customCursor = $(".custom-cursor");
+  const $hoverTargets = $(".project-item");
+  const $cursorText = $(".cursor-text");
+
+  $(document).on("mousemove", function (e) {
+    $customCursor.css({
+      top: e.clientY + "px",
+      left: e.clientX + "px",
+    });
+
+    $customCursorFollower.css({
+      top: e.clientY + "px",
+      left: e.clientX + "px",
+    });
+  });
+
+  $hoverTargets
+    .on("mouseenter", function () {
+      const text = $(this).data("cursor-text");
+
+      if (text) {
+        $cursorText.text(text);
+      } else {
+        $cursorText.text("View");
+      }
+
+      $customCursor.addClass("custom-cursor-active");
+      $customCursorFollower.addClass("custom-cursor-active");
+    })
+    .on("mouseleave", function () {
+      $customCursor.removeClass("custom-cursor-active");
+      $customCursorFollower.removeClass("custom-cursor-active");
+
+      $cursorText.text("");
+    });
+});
