@@ -66,6 +66,7 @@ $(window).on("load", function () {
         setTimeout(function () {
           $loaderWrapper.addClass("loaded");
           setTimeout(function () {
+            $loaderWrapper.css("display", "none");
             if (typeof initHeaderScroll === "function") {
               initHeaderScroll();
             }
