@@ -177,8 +177,102 @@ img {
   display: block;
   padding: 5px 20px;
 }
-
 /* ---------- custom start ---------- */
+
+/* ---------- loading start ---------- */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+  z-index: 9999;
+}
+
+#loading.loaded {
+  animation: fadeOut 0.7s forwards;
+}
+
+#loading .con {
+  text-align: center;
+}
+
+#loading .con div:first-child {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+#loading .con div:last-child {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+#loading .con span {
+  position: relative;
+  display: inline-block;
+  visibility: hidden;
+}
+
+.typing::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 1.1em;
+  background-color: #504539;
+  right: -0.2em;
+  bottom: 0;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* #loading .con .line-box {
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid #504539;
+  padding-top: 30px;
+  animation: line 2s linear 1;
+}
+
+#loading .con .line-box span {
+  font-size: 34px;
+  font-weight: 500;
+} */
+
+/* @keyframes line {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+} */
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* ---------- loading end ---------- */
 
 /* ---------- header start ---------- */
 header {
@@ -189,7 +283,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 1000;
   background-color: #fff;
 }
 

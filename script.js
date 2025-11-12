@@ -1,5 +1,81 @@
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * 텍스트를 한 글자씩 타이핑하는 함수 (★수정된 jQuery 버전★)
+ * @param {jQuery} $element - 텍스트를 표시할 jQuery 객체
+ * @param {string} text - 타이핑할 원본 텍스트 (HTML 포함)
+ * @param {number} baseSpeed - 타이핑 기본 속도 (ms)
+ * @param {function} onComplete - 타이핑 완료 시 실행할 콜백 함수
+ */
+function typeWriter($element, text, baseSpeed, onComplete) {
+  let i = 0;
+  $element.html("");
+
+  $element.css("visibility", "visible");
+
+  $element.addClass("typing"); // .classList.add('typing')
+
+  function type() {
+    if (i < text.length) {
+      const char = text.charAt(i);
+
+      if (char === "<") {
+        const tagCloseIndex = text.indexOf(">", i);
+        if (tagCloseIndex !== -1) {
+          $element.append(text.substring(i, tagCloseIndex + 1));
+          i = tagCloseIndex;
+        }
+      } else {
+        $element.append(char);
+      }
+
+      i++;
+
+      let delay = baseSpeed + Math.random() * baseSpeed;
+      if (char === "," || char === ".") {
+        delay += 350;
+      }
+
+      setTimeout(type, delay);
+    } else {
+      $element.removeClass("typing"); // .classList.remove('typing')
+      if (onComplete) onComplete();
+    }
+  }
+
+  type(); // 타이핑 시작
+}
+
+$(window).on("load", function () {
+  const $loaderWrapper = $("#loading");
+  const $span1 = $("#loading .con div:first-child span");
+  const $span2 = $("#loading .con div:last-child span");
+
+  const text1 = $span1.html();
+  const text2 = $span2.html();
+
+  const typeSpeed = 30;
+  const delayBetween = 200;
+  const delayAfter = 500;
+  const fadeOutDuration = 700;
+
+  // 'typeWriter' 함수를 호출(사용)
+  typeWriter($span1, text1, typeSpeed, function () {
+    setTimeout(function () {
+      typeWriter($span2, text2, typeSpeed, function () {
+        setTimeout(function () {
+          $loaderWrapper.addClass("loaded");
+          setTimeout(function () {
+            if (typeof initHeaderScroll === "function") {
+              initHeaderScroll();
+            }
+          }, fadeOutDuration);
+        }, delayAfter);
+      });
+    }, delayBetween);
+  });
+});
+
 $(document).ready(function () {
   // lenis
   const lenis = new Lenis();
