@@ -290,6 +290,7 @@ header {
 header > div {
   font-size: 20px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 header > ul {

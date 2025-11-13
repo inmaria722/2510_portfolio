@@ -78,6 +78,100 @@ $(window).on("load", function () {
 });
 
 $(document).ready(function () {
+  // 1. GSAP 플러그인 등록 (필수!)
+  // 이 코드가 있어야 ScrollToPlugin이 작동합니다.
+  gsap.registerPlugin(ScrollToPlugin);
+
+  const scrollSpeed = 800; // 0.8초 (ms)
+
+  /* =======================================
+     공용 스크롤 및 슬라이드 함수 (★GSAP 버전으로 수정★)
+     ======================================= */
+  function smoothScrollAndSlide(targetSelector, slideIndex) {
+    const $target = $(targetSelector);
+
+    if ($target.length === 0) {
+      console.error("Scroll target not found:", targetSelector);
+      return;
+    }
+
+    // 1. (★수정★) jQuery animate 대신 GSAP ScrollTo 사용
+    gsap.to(window, {
+      duration: scrollSpeed / 1000, // ms를 초 단위로 변경 (800 -> 0.8)
+      scrollTo: $target.offset().top, // 타겟의 y좌표로 스크롤
+      ease: "power2.inOut", // 부드러운 스크롤 효과
+
+      // 2. 스크롤 완료 후 실행할 콜백 (Swiper 이동)
+      onComplete: function () {
+        if (slideIndex !== undefined) {
+          let swiperInstance = null;
+
+          if (
+            document.querySelector(".mySwiper") &&
+            document.querySelector(".mySwiper").swiper
+          ) {
+            swiperInstance = document.querySelector(".mySwiper").swiper;
+          } else if (typeof mySwiper !== "undefined") {
+            swiperInstance = mySwiper;
+          }
+
+          if (swiperInstance) {
+            swiperInstance.slideTo(slideIndex, 0); // 즉시 이동
+          } else {
+            console.warn("Swiper instance 'mySwiper' not found on click.");
+          }
+        }
+      },
+    });
+  }
+
+  /* =======================================
+     헤더 링크 클릭 이벤트 (변경 없음)
+     ======================================= */
+
+  // 1. *inmaria (로고) 클릭 시: 맨 위로 이동
+  $("header > div").on("click", function (e) {
+    e.preventDefault();
+    // (★수정★) 여기도 GSAP으로 변경
+    gsap.to(window, {
+      duration: scrollSpeed / 1000,
+      scrollTo: 0,
+      ease: "power2.inOut",
+    });
+  });
+
+  // 2. Profile (li 1번째)
+  $("header ul li:nth-child(1) a").on("click", function (e) {
+    e.preventDefault();
+    smoothScrollAndSlide(".profile-box");
+  });
+
+  // 3. Branding (li 2번째 -> 슬라이드 0번)
+  $("header ul li:nth-child(2) a").on("click", function (e) {
+    e.preventDefault();
+    smoothScrollAndSlide(".project-box", 0);
+  });
+
+  // 4. Redesign (li 3번째 -> 슬라이드 1번)
+  $("header ul li:nth-child(3) a").on("click", function (e) {
+    e.preventDefault();
+    smoothScrollAndSlide(".project-box", 1);
+  });
+
+  // 5. Appdesign (li 4번째 -> 슬라이드 4번)
+  $("header ul li:nth-child(4) a").on("click", function (e) {
+    e.preventDefault();
+    smoothScrollAndSlide(".project-box", 4);
+  });
+
+  // 6. Clonecoding (li 5번째 -> 슬라이드 5번)
+  $("header ul li:nth-child(5) a").on("click", function (e) {
+    e.preventDefault();
+    smoothScrollAndSlide(".project-box", 5);
+  });
+});
+
+$(document).ready(function () {
   // lenis
   const lenis = new Lenis();
   lenis.on("scroll", ScrollTrigger.update);
