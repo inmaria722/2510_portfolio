@@ -238,29 +238,6 @@ img {
   }
 }
 
-/* #loading .con .line-box {
-  width: 100%;
-  height: 100%;
-  border-top: 2px solid #504539;
-  padding-top: 30px;
-  animation: line 2s linear 1;
-}
-
-#loading .con .line-box span {
-  font-size: 34px;
-  font-weight: 500;
-} */
-
-/* @keyframes line {
-  0% {
-    width: 0;
-  }
-
-  100% {
-    width: 100%;
-  }
-} */
-
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -437,34 +414,24 @@ header ul a:hover {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   margin-bottom: 0;
 }
 
 .project-list-box .project-title-box .title {
-  font-size: 46px;
+  font-size: 52px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .project-list-box .project-title-box .title > span:first-child {
-  animation: title-star 5s linear infinite;
+  animation: spin 5s linear infinite;
 }
 
 .project-list-box .project-title-box .title > span:last-child {
   font-family: "Nanum Myeongjo", serif;
   font-weight: 300;
-}
-
-@keyframes title-star {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /* list-btn */
@@ -492,7 +459,6 @@ header ul a:hover {
 .project-list-box .project-title-box .list-btn button:last-child {
   padding-right: 10px;
   padding-left: 5px;
-  border-left: 1px solid rgba(80, 69, 57, 0.3);
 }
 
 /* list-btn .active */
@@ -520,12 +486,12 @@ header ul a:hover {
 }
 
 .project-list-box .border-box .main-box {
-  border-top: 1px solid #504539;
-  border-bottom: 1px solid #504539;
+  border-top: 1px solid rgba(80, 69, 57, 0.5);
+  border-bottom: 1px solid rgba(80, 69, 57, 0.5);
 }
 
 .project-list-box .project-img-ver .main-box {
-  padding: 30px 0;
+  padding: 20px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -755,6 +721,7 @@ header ul a:hover {
   height: 100%;
 }
 
+/* left */
 .project-box .con .left {
   width: 390px;
   position: relative;
@@ -836,6 +803,7 @@ header ul a:hover {
   width: 68px;
 }
 
+/* right */
 .project-box .con .right {
   width: 936px;
   height: 100%;
@@ -852,6 +820,49 @@ header ul a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.project-box .con .right .project-item .line {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  width: 0px;
+  height: 1px;
+  background-color: #fefdf8;
+  transition: all 0.6s ease;
+  opacity: 0.5;
+}
+
+.project-box .con .right .project-item:hover .line {
+  width: 915px;
+}
+
+.project-box .con .right .swiper .swiper-slide .p-btn-box {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  right: 25px;
+  bottom: 30px;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn span {
+  color: #fefdf8;
+}
+
+.project-box .con .right .swiper .swiper-slide:hover .p-btn-box {
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover {
+  background-color: #504539;
+}
+
+.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover span {
+  color: #fefdf8;
 }
 
 .project-box .con .right .img-box {
@@ -884,36 +895,6 @@ header ul a:hover {
 
 .project-box .con .right .project-item:hover .img-box img {
   transform: scale(1.1);
-}
-
-.project-box .con .right .swiper .swiper-slide .p-btn-box {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  right: 25px;
-  bottom: 30px;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-  transition: all 0.4s ease;
-  z-index: 1;
-}
-
-.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn span {
-  color: #fefdf8;
-}
-
-.project-box .con .right .swiper .swiper-slide:hover .p-btn-box {
-  opacity: 1;
-  visibility: visible;
-}
-
-.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover {
-  background-color: #504539;
-}
-
-.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover span {
-  color: #fefdf8;
 }
 
 .swiper-pagination-bullet-active {
@@ -983,7 +964,8 @@ footer .bg-star-big {
   position: absolute;
   top: 135px;
   left: -140px;
-  opacity: 0.03;
+  opacity: 0.025;
+  animation: spin 30s linear infinite;
 }
 
 footer .con .box-1 {
@@ -1042,6 +1024,25 @@ footer .con .box-2 {
   font-size: 18px;
   font-weight: 500;
 }
+
+footer .con .box-2 span {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+footer .con .box-2 span:hover {
+  color: #ff8d28;
+}
 /* ---------- footer end ---------- */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* ---------- custom end ---------- */
