@@ -242,7 +242,7 @@ img {
   border-radius: 20px;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: all 0.5s ease;
   animation: fadeInButton 0.5s ease 1s forwards;
 }
 
@@ -1148,6 +1148,36 @@ footer .con .box-2 span:hover {
   color: #ff8d28;
 }
 /* ---------- footer end ---------- */
+
+/* go to footer */
+.go-to-footer {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 900;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
+.go-to-footer.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.go-to-footer svg {
+  width: 24px;
+  height: 24px;
+}
 
 @keyframes spin {
   0% {
