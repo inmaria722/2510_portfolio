@@ -320,7 +320,7 @@ header ul a::after {
   content: "";
   position: absolute;
   left: 50%;
-  top: 100%;
+  top: 110%;
   width: 0;
   height: 1px;
   background-color: #504539;
@@ -957,28 +957,6 @@ header ul a.active::after {
   width: 915px;
 }
 
-/* p-btn-box */
-/* .project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn {
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-} */
-
-/* .project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn span {
-  color: #fefdf8;
-} */
-
-/* .project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-} */
-
-/* .project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover span {
-  color: #fefdf8;
-} */
-
 .project-box .con .right .img-box {
   width: 100%;
   overflow: hidden;
@@ -1158,6 +1136,7 @@ footer .con .box-2 span:hover {
   width: 50px;
   height: 50px;
   background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
   display: flex;
   justify-content: center;
