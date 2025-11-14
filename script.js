@@ -4,6 +4,7 @@ let typingTimeouts = [];
 let isLoadingComplete = false;
 const fadeOutDuration = 700;
 
+// loading
 function typeWriter($element, text, baseSpeed, onComplete) {
   let i = 0;
   $element.html("");
@@ -46,7 +47,6 @@ function typeWriter($element, text, baseSpeed, onComplete) {
 
   type();
 }
-
 function completeLoading() {
   if (isLoadingComplete) return;
   isLoadingComplete = true;
@@ -66,7 +66,6 @@ function completeLoading() {
     }
   }, fadeOutDuration);
 }
-
 $(window).on("load", function () {
   const $span1 = $("#loading .con div:first-child span");
   const $span2 = $("#loading .con div:last-child span");
@@ -97,33 +96,42 @@ $(window).on("load", function () {
   });
 });
 
+// skip btn
 $(document).ready(function () {
   $("#skip-loading-btn").on("click", function (e) {
     e.preventDefault();
     completeLoading();
   });
 });
+
+// header
 $(document).ready(function () {
   gsap.registerPlugin(ScrollToPlugin);
-
   const scrollSpeed = 800;
+
+  const $links = $("header ul li a");
+  const $projectBox = $(".project-box");
+  const header = $("header")[0];
+  let lastDirection = 0;
+  let isNavigating = false;
+
+  function removeAllActive() {
+    $links.removeClass("active");
+  }
+
   function smoothScrollAndSlide(targetSelector, slideIndex) {
     const $target = $(targetSelector);
-
-    if ($target.length === 0) {
-      console.error("Scroll target not found:", targetSelector);
-      return;
-    }
+    if ($target.length === 0) return;
 
     gsap.to(window, {
       duration: scrollSpeed / 1000,
       scrollTo: $target.offset().top,
       ease: "power2.inOut",
-
-      onComplete: function () {
+      onStart: () => (isNavigating = true),
+      onComplete: () => {
+        isNavigating = false;
         if (slideIndex !== undefined) {
           let swiperInstance = null;
-
           if (
             document.querySelector(".mySwiper") &&
             document.querySelector(".mySwiper").swiper
@@ -132,72 +140,29 @@ $(document).ready(function () {
           } else if (typeof mySwiper !== "undefined") {
             swiperInstance = mySwiper;
           }
-
           if (swiperInstance) {
             swiperInstance.slideTo(slideIndex, 0);
-          } else {
-            console.warn("Swiper instance 'mySwiper' not found on click.");
           }
         }
       },
     });
   }
 
-  $("header > div").on("click", function (e) {
-    e.preventDefault();
-    gsap.to(window, {
-      duration: scrollSpeed / 1000,
-      scrollTo: 0,
-      ease: "power2.inOut",
-    });
-  });
-
-  $("header ul li:nth-child(1) a").on("click", function (e) {
-    e.preventDefault();
-    smoothScrollAndSlide(".profile-box");
-  });
-
-  $("header ul li:nth-child(2) a").on("click", function (e) {
-    e.preventDefault();
-    smoothScrollAndSlide(".project-box", 0);
-  });
-
-  $("header ul li:nth-child(3) a").on("click", function (e) {
-    e.preventDefault();
-    smoothScrollAndSlide(".project-box", 1);
-  });
-
-  $("header ul li:nth-child(4) a").on("click", function (e) {
-    e.preventDefault();
-    smoothScrollAndSlide(".project-box", 4);
-  });
-
-  $("header ul li:nth-child(5) a").on("click", function (e) {
-    e.preventDefault();
-    smoothScrollAndSlide(".project-box", 5);
-  });
-});
-
-$(document).ready(function () {
-  // lenis
-  const lenis = new Lenis();
-  lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-  gsap.ticker.lagSmoothing(0);
-
-  // header
-  const header = $("header")[0];
-  let lastDirection = 0;
-
-  ScrollTrigger.create({
+  const headerScrollTrigger = ScrollTrigger.create({
     start: 0,
     end: "max",
-
     onUpdate: (self) => {
-      const currentDirection = self.direction;
+      if (isNavigating) {
+        gsap.to(header, {
+          y: "0%",
+          duration: 0.6,
+          ease: "power1.inOut",
+        });
+        lastDirection = -1;
+        return;
+      }
 
+      const currentDirection = self.direction;
       if (self.scroll() === 0) {
         gsap.to(header, {
           y: "0%",
@@ -214,7 +179,7 @@ $(document).ready(function () {
           });
         } else if (currentDirection === -1) {
           gsap.to(header, {
-            y: "-0%",
+            y: "0%",
             duration: 0.6,
             ease: "power1.inout",
           });
@@ -223,6 +188,137 @@ $(document).ready(function () {
       }
     },
   });
+
+  $("header > div").on("click", function (e) {
+    e.preventDefault();
+    removeAllActive();
+    gsap.to(window, {
+      duration: scrollSpeed / 1000,
+      scrollTo: 0,
+      ease: "power2.inOut",
+      onStart: () => (isNavigating = true),
+      onComplete: () => (isNavigating = false),
+    });
+  });
+
+  $("header ul li:nth-child(1) a").on("click", function (e) {
+    e.preventDefault();
+    removeAllActive();
+    $(this).addClass("active");
+    smoothScrollAndSlide(".profile-box");
+  });
+
+  $("header ul li:nth-child(2) a").on("click", function (e) {
+    e.preventDefault();
+    removeAllActive();
+    $(this).addClass("active");
+    smoothScrollAndSlide(".project-box", 0);
+  });
+
+  $("header ul li:nth-child(3) a").on("click", function (e) {
+    e.preventDefault();
+    removeAllActive();
+    $(this).addClass("active");
+    smoothScrollAndSlide(".project-box", 1);
+  });
+
+  $("header ul li:nth-child(4) a").on("click", function (e) {
+    e.preventDefault();
+    removeAllActive();
+    $(this).addClass("active");
+    smoothScrollAndSlide(".project-box", 4);
+  });
+
+  $("header ul li:nth-child(5) a").on("click", function (e) {
+    e.preventDefault();
+    removeAllActive();
+    $(this).addClass("active");
+    smoothScrollAndSlide(".project-box", 5);
+  });
+
+  function updateActiveSlide(index) {
+    removeAllActive();
+    if (index === 0) {
+      $links.eq(1).addClass("active");
+    } else if (index === 1) {
+      $links.eq(2).addClass("active");
+    } else if (index === 4) {
+      $links.eq(3).addClass("active");
+    } else if (index === 5) {
+      $links.eq(4).addClass("active");
+    }
+  }
+
+  ScrollTrigger.create({
+    trigger: ".profile-box",
+    start: "top 50%",
+    end: "bottom 50%",
+    onToggle: (self) => {
+      if (isNavigating) return;
+      if (self.isActive) {
+        removeAllActive();
+        $links.eq(0).addClass("active");
+      } else {
+        removeAllActive();
+      }
+    },
+  });
+
+  const projectTrigger = ScrollTrigger.create({
+    trigger: $projectBox,
+    start: "top 50%",
+    end: "bottom 50%",
+    onToggle: (self) => {
+      if (isNavigating) return;
+
+      if (self.isActive) {
+        let swiperInstance = null;
+        if (
+          document.querySelector(".mySwiper") &&
+          document.querySelector(".mySwiper").swiper
+        ) {
+          swiperInstance = document.querySelector(".mySwiper").swiper;
+        } else if (typeof mySwiper !== "undefined") {
+          swiperInstance = mySwiper;
+        }
+        if (swiperInstance) {
+          updateActiveSlide(swiperInstance.realIndex);
+        }
+      } else {
+        removeAllActive();
+      }
+    },
+  });
+
+  let swiperInstance = null;
+  if (
+    document.querySelector(".mySwiper") &&
+    document.querySelector(".mySwiper").swiper
+  ) {
+    swiperInstance = document.querySelector(".mySwiper").swiper;
+  } else if (typeof mySwiper !== "undefined") {
+    swiperInstance = mySwiper;
+  }
+
+  if (swiperInstance) {
+    swiperInstance.on("slideChange", function () {
+      if (projectTrigger && projectTrigger.isActive && !isNavigating) {
+        updateActiveSlide(swiperInstance.realIndex);
+      }
+    });
+  } else {
+    console.warn("Swiper instance not found for Scrollspy.");
+  }
+});
+
+$(document).ready(function () {
+  // lenis
+  const lenis = new Lenis();
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+  gsap.ticker.lagSmoothing(0);
 
   //   fade-up
   const fadeUpTargets = $("[fade='up']").not(".t-project-item");
@@ -350,7 +446,7 @@ $(document).ready(function () {
     start: "top top",
     end: () => "+=" + pinDuration,
 
-    scrub: 0.3,
+    scrub: 0.2,
 
     snap: {
       snapTo: 1 / (slideCount - 1),
@@ -401,9 +497,6 @@ $(document).ready(function () {
       top: e.clientY + "px",
       left: e.clientX + "px",
     });
-
-    // ▼ 1. 이 부분을 삭제했습니다.
-    // $customCursorFollower.css({ ... });
   });
 
   $hoverTargets
@@ -417,15 +510,9 @@ $(document).ready(function () {
       }
 
       $customCursor.addClass("custom-cursor-active");
-
-      // ▼ 2. 이 부분을 삭제했습니다.
-      // $customCursorFollower.addClass("custom-cursor-active");
     })
     .on("mouseleave", function () {
       $customCursor.removeClass("custom-cursor-active");
-
-      // ▼ 3. 이 부분을 삭제했습니다.
-      // $customCursorFollower.removeClass("custom-cursor-active");
 
       $cursorText.text("");
     });
