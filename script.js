@@ -1,14 +1,21 @@
 gsap.registerPlugin(ScrollTrigger);
 
+let typingTimeouts = [];
+let isLoadingComplete = false;
+const fadeOutDuration = 700;
+
 function typeWriter($element, text, baseSpeed, onComplete) {
   let i = 0;
   $element.html("");
-
   $element.css("visibility", "visible");
-
   $element.addClass("typing");
 
   function type() {
+    if (isLoadingComplete) {
+      $element.removeClass("typing");
+      return;
+    }
+
     if (i < text.length) {
       const char = text.charAt(i);
 
@@ -29,7 +36,8 @@ function typeWriter($element, text, baseSpeed, onComplete) {
         delay += 350;
       }
 
-      setTimeout(type, delay);
+      const timeoutId = setTimeout(type, delay);
+      typingTimeouts.push(timeoutId);
     } else {
       $element.removeClass("typing");
       if (onComplete) onComplete();
@@ -39,8 +47,27 @@ function typeWriter($element, text, baseSpeed, onComplete) {
   type();
 }
 
-$(window).on("load", function () {
+function completeLoading() {
+  if (isLoadingComplete) return;
+  isLoadingComplete = true;
+
+  typingTimeouts.forEach(clearTimeout);
+  typingTimeouts = [];
+
+  $("#skip-loading-btn").css("display", "none");
+
   const $loaderWrapper = $("#loading");
+  $loaderWrapper.addClass("loaded");
+
+  setTimeout(function () {
+    $loaderWrapper.css("display", "none");
+    if (typeof initHeaderScroll === "function") {
+      initHeaderScroll();
+    }
+  }, fadeOutDuration);
+}
+
+$(window).on("load", function () {
   const $span1 = $("#loading .con div:first-child span");
   const $span2 = $("#loading .con div:last-child span");
 
@@ -50,26 +77,32 @@ $(window).on("load", function () {
   const typeSpeed = 55;
   const delayBetween = 200;
   const delayAfter = 500;
-  const fadeOutDuration = 700;
 
-  // 'typeWriter' 함수를 호출(사용)
+  typingTimeouts = [];
+
   typeWriter($span1, text1, typeSpeed, function () {
-    setTimeout(function () {
+    if (isLoadingComplete) return;
+
+    const timeout1 = setTimeout(function () {
       typeWriter($span2, text2, typeSpeed, function () {
-        setTimeout(function () {
-          $loaderWrapper.addClass("loaded");
-          setTimeout(function () {
-            $loaderWrapper.css("display", "none");
-            if (typeof initHeaderScroll === "function") {
-              initHeaderScroll();
-            }
-          }, fadeOutDuration);
+        if (isLoadingComplete) return;
+
+        const timeout2 = setTimeout(function () {
+          completeLoading();
         }, delayAfter);
+        typingTimeouts.push(timeout2);
       });
     }, delayBetween);
+    typingTimeouts.push(timeout1);
   });
 });
 
+$(document).ready(function () {
+  $("#skip-loading-btn").on("click", function (e) {
+    e.preventDefault();
+    completeLoading();
+  });
+});
 $(document).ready(function () {
   gsap.registerPlugin(ScrollToPlugin);
 

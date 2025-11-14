@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Didot LT Std';
+    src: url('DidotLTStd-Roman.woff2') format('woff2'),
+        url('DidotLTStd-Roman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Didot LT Std';
+    src: url('DidotLTStd-Headline.woff2') format('woff2'),
+        url('DidotLTStd-Headline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Didot LT Std';
+    src: url('DidotLTStd-Bold.woff2') format('woff2'),
+        url('DidotLTStd-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

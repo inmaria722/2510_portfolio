@@ -228,6 +228,37 @@ img {
   animation: blink 0.7s infinite;
 }
 
+#loading .skip-btn {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  z-index: 10000;
+  background: none;
+  border: 1px solid #aaa;
+  color: #aaa;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: fadeInButton 0.5s ease 1s forwards;
+}
+
+#loading .skip-btn:hover {
+  background: #aaa;
+  color: #fff;
+}
+
+@keyframes fadeInButton {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes blink {
   0%,
   100% {
@@ -486,8 +517,8 @@ header ul a:hover {
 }
 
 .project-list-box .border-box .main-box {
-  border-top: 1px solid rgba(80, 69, 57, 0.5);
-  border-bottom: 1px solid rgba(80, 69, 57, 0.5);
+  border-top: 1px solid rgba(80, 69, 57, 0.6);
+  border-bottom: 1px solid rgba(80, 69, 57, 0.6);
 }
 
 .project-list-box .project-img-ver .main-box {
@@ -592,7 +623,7 @@ header ul a:hover {
 }
 
 .project-list-box .project-text-ver .main-box .t-project-item:not(:last-child) {
-  border-bottom: 1px solid #504539;
+  border-bottom: 1px solid rgba(80, 69, 57, 0.6);
 }
 
 .project-list-box .project-text-ver .main-box .t-project-item .left {
@@ -673,6 +704,45 @@ header ul a:hover {
   border: 1px solid #504539;
   font-size: 18px;
   background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.project-list-box .project-text-ver .main-box .t-project-item .p-btn > * {
+  position: relative;
+  z-index: 3;
+}
+
+.project-list-box .project-text-ver .main-box .t-project-item .p-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #504539;
+  transform-origin: left;
+  transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+  z-index: 2;
+}
+
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item
+  .p-btn:hover
+  span {
+  color: #ffffff;
+  transition-delay: 0.2s;
+}
+
+.project-list-box
+  .project-text-ver
+  .main-box
+  .t-project-item
+  .p-btn:hover::before {
+  width: 100%;
 }
 
 .project-list-box
@@ -682,20 +752,6 @@ header ul a:hover {
   .p-btn-box
   .p-btn:first-child {
   margin-right: 10px;
-}
-
-/* btn:hover */
-.project-list-box
-  .project-text-ver
-  .main-box
-  .t-project-item
-  .p-btn-box
-  .p-btn:hover {
-  background-color: #504539;
-}
-
-.project-list-box .project-text-ver .main-box .p-btn-box .p-btn:hover span {
-  color: #fefdf8;
 }
 /* ---------- project-list-box (text) end ---------- */
 
@@ -797,10 +853,53 @@ header ul a:hover {
   font-size: 16px;
   display: flex;
   gap: 20px;
+  opacity: 0.9;
 }
 
 .project-box .con .left .text-box ul li strong {
   width: 68px;
+  font-weight: 500;
+}
+
+.project-box .left .text-box .btn-box {
+  font-weight: 600;
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.project-box .left .text-box .btn-box a {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.project-box .con .left .text-box .btn-box a span:first-child {
+  position: relative;
+}
+
+.project-box .con .left .text-box .btn-box a span:first-child::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #504539;
+  transition: width 0.3s ease-out;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.project-box .con .left .text-box .btn-box a:hover span:first-child::after {
+  width: 100%;
+}
+
+.project-box .con .left .text-box .btn-box a span:last-child {
+  transition: transform 0.3s ease;
+}
+
+.project-box .con .left .text-box .btn-box a:hover span:last-child {
+  transform: translateX(4px);
 }
 
 /* right */
@@ -824,46 +923,41 @@ header ul a:hover {
 
 .project-box .con .right .project-item .line {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   left: 10px;
   z-index: 10;
   width: 0px;
   height: 1px;
   background-color: #fefdf8;
   transition: all 0.6s ease;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .project-box .con .right .project-item:hover .line {
   width: 915px;
 }
 
-.project-box .con .right .swiper .swiper-slide .p-btn-box {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  right: 25px;
-  bottom: 30px;
-  transition: all 0.4s ease;
-  z-index: 1;
-}
+/* p-btn-box */
+/* .project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+} */
 
-.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn span {
+/* .project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn span {
   color: #fefdf8;
-}
+} */
 
-.project-box .con .right .swiper .swiper-slide:hover .p-btn-box {
-  opacity: 1;
-  visibility: visible;
-}
+/* .project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+} */
 
-.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover {
-  background-color: #504539;
-}
-
-.project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover span {
+/* .project-box .con .right .swiper .swiper-slide .p-btn-box .p-btn:hover span {
   color: #fefdf8;
-}
+} */
 
 .project-box .con .right .img-box {
   width: 100%;
