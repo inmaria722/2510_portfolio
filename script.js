@@ -64,7 +64,7 @@ $(window).on("load", function () {
   const $span2 = $("#loading .con div:last-child span");
   const text1 = $span1.html();
   const text2 = $span2.html();
-  const typeSpeed = 55;
+  const typeSpeed = 60;
   const delayBetween = 200;
   const delayAfter = 500;
   typingTimeouts = [];
@@ -83,9 +83,6 @@ $(window).on("load", function () {
   });
 });
 
-/* =======================================
-   4. 메인 스크립트 (Document Ready)
-   ======================================= */
 $(document).ready(function () {
   // --- 스킵 버튼 ---
   $("#skip-loading-btn").on("click", function (e) {
@@ -244,7 +241,7 @@ $(document).ready(function () {
   gsap.ticker.lagSmoothing(0);
 
   // --- GSAP 섹션 애니메이션 (fade-up, fade-left) ---
-  const fadeUpTargets = $("[fade='up']").not(".t-project-item");
+  const fadeUpTargets = $("[data-fade='up']").not(".t-project-item");
   if (fadeUpTargets.length > 0) {
     $.each(fadeUpTargets, function (i, e) {
       const delay = $(e).data("delay") || 0;
@@ -264,7 +261,7 @@ $(document).ready(function () {
     });
   }
 
-  const fadeLeftTargets = $("[fade='left']");
+  const fadeLeftTargets = $("[data-fade='left']");
   if (fadeLeftTargets.length > 0) {
     $.each(fadeLeftTargets, function (i, e) {
       const delay = $(e).data("delay") || 0;
@@ -353,16 +350,16 @@ $(document).ready(function () {
       pin: true,
       start: "top top",
       end: () => "+=" + pinDuration,
-      scrub: 0.2,
+      scrub: 0.3,
       snap: {
         snapTo: 1 / (slideCount - 1),
-        duration: 0.6,
+        duration: 0.7,
         ease: "power1.inOut",
       },
       onUpdate: (self) => {
         const activeIndex = Math.round(self.progress * (slideCount - 1));
         if (activeIndex !== lastIndex) {
-          mySwiper.slideTo(activeIndex, 600);
+          mySwiper.slideTo(activeIndex, 200);
           if ($textBoxes && $textBoxes.length > 0) {
             $textBoxes.removeClass("active");
             $textBoxes.eq(activeIndex).addClass("active");
