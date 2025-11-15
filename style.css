@@ -125,6 +125,7 @@ section {
   width: 100%;
   overflow-x: hidden;
   background-color: #fff;
+  padding: 0 100px;
 }
 
 .con {
@@ -1042,10 +1043,11 @@ header ul a.active::after {
 
 /* ---------- footer start ---------- */
 footer {
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
   background-color: transparent;
   position: relative;
+  padding: 0 100px;
 }
 
 footer .con {
