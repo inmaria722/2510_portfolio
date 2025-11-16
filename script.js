@@ -84,13 +84,11 @@ $(window).on("load", function () {
 });
 
 $(document).ready(function () {
-  // --- 스킵 버튼 ---
   $("#skip-loading-btn").on("click", function (e) {
     e.preventDefault();
     completeLoading();
   });
 
-  // --- 헤더 (숨김 & 스크롤스파이) ---
   const scrollSpeed = 800;
   const $links = $("header ul li a");
   const $projectBox = $(".project-box");
@@ -192,12 +190,32 @@ $(document).ready(function () {
   function updateActiveSlide(index) {
     if ($links && $links.length > 0) {
       removeAllActive();
-      if (index === 0) $links.eq(1).addClass("active");
-      else if (index === 1) $links.eq(2).addClass("active");
-      else if (index === 4) $links.eq(3).addClass("active");
-      else if (index === 5) $links.eq(4).addClass("active");
+      if (index === 0) {
+        $links.eq(1).addClass("active");
+      } else if (index === 1 || index === 2 || index === 3) {
+        $links.eq(2).addClass("active");
+      } else if (index === 4) {
+        $links.eq(3).addClass("active");
+      } else if (index === 5) {
+        $links.eq(4).addClass("active");
+      }
     }
   }
+
+  ScrollTrigger.create({
+    trigger: ".banner",
+    start: "top 50%",
+    end: "bottom 50%",
+    onToggle: (self) => {
+      if (isNavigating) return;
+      if (self.isActive) {
+        removeAllActive();
+        if ($links && $links.length > 0) {
+          $links.eq(0).addClass("active");
+        }
+      }
+    },
+  });
 
   ScrollTrigger.create({
     trigger: ".profile-box",
@@ -210,29 +228,10 @@ $(document).ready(function () {
         if ($links && $links.length > 0) {
           $links.eq(0).addClass("active");
         }
-      } else {
-        removeAllActive();
       }
     },
   });
 
-  const projectTrigger = ScrollTrigger.create({
-    trigger: $projectBox,
-    start: "top 50%",
-    end: "bottom 50%",
-    onToggle: (self) => {
-      if (isNavigating) return;
-      if (self.isActive) {
-        if (mySwiper) {
-          updateActiveSlide(mySwiper.realIndex);
-        }
-      } else {
-        removeAllActive();
-      }
-    },
-  });
-
-  // --- Lenis 스크롤 ---
   const lenis = new Lenis();
   lenis.on("scroll", ScrollTrigger.update);
   gsap.ticker.add((time) => {
@@ -240,7 +239,6 @@ $(document).ready(function () {
   });
   gsap.ticker.lagSmoothing(0);
 
-  // --- GSAP 섹션 애니메이션 (fade-up, fade-left) ---
   const fadeUpTargets = $("[data-fade='up']").not(".t-project-item");
   if (fadeUpTargets.length > 0) {
     $.each(fadeUpTargets, function (i, e) {
@@ -279,7 +277,6 @@ $(document).ready(function () {
     });
   }
 
-  // --- GSAP 섹션 애니메이션 (project-img-ver) ---
   gsap.from(".project-img-ver .project-item", {
     opacity: 0,
     x: -80,
@@ -293,7 +290,6 @@ $(document).ready(function () {
     },
   });
 
-  // --- list-btn (탭 기능) ---
   $(".list-btn button").on("click", function () {
     $(this).addClass("active").siblings().removeClass("active");
     const targetContent = $(this).data("target");
@@ -324,7 +320,6 @@ $(document).ready(function () {
     }
   });
 
-  // --- Project Box (Swiper 핀 & 스크롤 연동) ---
   const $textBoxes = $(".project-box .con .left .text-box");
 
   mySwiper = new Swiper(".mySwiper", {
@@ -350,10 +345,10 @@ $(document).ready(function () {
       pin: true,
       start: "top top",
       end: () => "+=" + pinDuration,
-      scrub: 0.3,
+      scrub: 0.4,
       snap: {
         snapTo: 1 / (slideCount - 1),
-        duration: 0.7,
+        duration: 0.5,
         ease: "power1.inOut",
       },
       onUpdate: (self) => {
@@ -364,13 +359,18 @@ $(document).ready(function () {
             $textBoxes.removeClass("active");
             $textBoxes.eq(activeIndex).addClass("active");
           }
+
+          if (!isNavigating) {
+            updateActiveSlide(activeIndex);
+          }
+
           lastIndex = activeIndex;
         }
       },
     });
 
     mySwiper.on("slideChange", function () {
-      if (projectTrigger && projectTrigger.isActive && !isNavigating) {
+      if (!isNavigating) {
         updateActiveSlide(mySwiper.realIndex);
       }
       const activeIndex = mySwiper.activeIndex;
@@ -392,7 +392,6 @@ $(document).ready(function () {
     }
   }
 
-  // --- 커스텀 커서 ---
   const $customCursor = $(".custom-cursor");
   const $hoverTargets = $(".project-item");
   const $cursorText = $(".cursor-text");
@@ -417,7 +416,6 @@ $(document).ready(function () {
       $cursorText.text("");
     });
 
-  // --- 푸터 이동 버튼 ---
   const $goToFooterBtn = $("#goToFooterBtn");
   const $footer = $("#footer");
 
