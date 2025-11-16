@@ -712,7 +712,7 @@ header ul a.active::after {
 }
 
 .project-list-box .project-text-ver .main-box .t-project-item:hover .p-btn-box {
-  display: block;
+  display: flex;
 }
 
 /* p-btn */
