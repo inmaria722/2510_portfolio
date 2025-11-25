@@ -156,47 +156,46 @@ $(document).ready(function () {
       onComplete: () => (isNavigating = false),
     });
   });
-  $("header ul li:nth-child(1) a").on("click", function (e) {
-    e.preventDefault();
-    removeAllActive();
-    $(this).addClass("active");
-    smoothScrollAndSlide(".profile-box");
-  });
+
   $("header ul li:nth-child(2) a").on("click", function (e) {
     e.preventDefault();
     removeAllActive();
     $(this).addClass("active");
     smoothScrollAndSlide(".project-box", 0);
   });
+
   $("header ul li:nth-child(3) a").on("click", function (e) {
     e.preventDefault();
     removeAllActive();
     $(this).addClass("active");
-    smoothScrollAndSlide(".project-box", 1);
+    smoothScrollAndSlide(".project-box", 2);
   });
+
   $("header ul li:nth-child(4) a").on("click", function (e) {
-    e.preventDefault();
-    removeAllActive();
-    $(this).addClass("active");
-    smoothScrollAndSlide(".project-box", 4);
-  });
-  $("header ul li:nth-child(5) a").on("click", function (e) {
     e.preventDefault();
     removeAllActive();
     $(this).addClass("active");
     smoothScrollAndSlide(".project-box", 5);
   });
 
+  $("header ul li:nth-child(5) a").on("click", function (e) {
+    e.preventDefault();
+    removeAllActive();
+    $(this).addClass("active");
+    smoothScrollAndSlide(".project-box", 6);
+  });
+
   function updateActiveSlide(index) {
     if ($links && $links.length > 0) {
       removeAllActive();
-      if (index === 0) {
+
+      if (index === 0 || index === 1) {
         $links.eq(1).addClass("active");
-      } else if (index === 1 || index === 2 || index === 3) {
+      } else if (index === 2 || index === 3 || index === 4) {
         $links.eq(2).addClass("active");
-      } else if (index === 4) {
-        $links.eq(3).addClass("active");
       } else if (index === 5) {
+        $links.eq(3).addClass("active");
+      } else if (index === 6 || index === 7) {
         $links.eq(4).addClass("active");
       }
     }

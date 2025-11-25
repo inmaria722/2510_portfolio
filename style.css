@@ -105,6 +105,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "KakaoBigFont";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
 body {
   font-family: "Pretendard";
   overflow-x: hidden;
@@ -115,6 +123,11 @@ body {
 * {
   box-sizing: border-box;
   color: #504539;
+}
+
+::selection {
+  background: #504539;
+  color: #fefdf8;
 }
 
 svg {
@@ -839,29 +852,39 @@ header ul a.active::after {
 }
 
 .project-box .con .left .text-box:nth-child(2) h1 {
-  font-family: "Didot LT Std Headline";
+  font-weight: 700;
 }
 
 .project-box .con .left .text-box:nth-child(3) h1 {
+  font-family: "Didot LT Std Headline";
+}
+
+.project-box .con .left .text-box:nth-child(4) h1 {
   font-weight: 700;
   font-size: 62px;
   text-transform: lowercase;
   font-family: "Georgia";
 }
 
-.project-box .con .left .text-box:nth-child(4) h1 {
+.project-box .con .left .text-box:nth-child(5) h1 {
   font-weight: 500;
 }
 
-.project-box .con .left .text-box:nth-child(5) h1 {
+.project-box .con .left .text-box:nth-child(6) h1 {
   font-weight: 700;
   font-size: 70px;
 }
 
-.project-box .con .left .text-box:nth-child(6) h1 {
+.project-box .con .left .text-box:nth-child(7) h1 {
   font-weight: 400;
   font-size: 100px;
   font-family: "Product Sans";
+}
+
+.project-box .con .left .text-box:nth-child(8) h1 {
+  font-size: 64px;
+  font-family: "KakaoBigFont";
+  font-weight: 700;
 }
 
 .project-box .con .left .text-box ul {
