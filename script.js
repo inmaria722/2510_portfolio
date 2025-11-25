@@ -157,6 +157,13 @@ $(document).ready(function () {
     });
   });
 
+  $("header ul li:nth-child(1) a").on("click", function (e) {
+    e.preventDefault();
+    removeAllActive();
+    $(this).addClass("active");
+    smoothScrollAndSlide(".profile-box");
+  });
+
   $("header ul li:nth-child(2) a").on("click", function (e) {
     e.preventDefault();
     removeAllActive();
