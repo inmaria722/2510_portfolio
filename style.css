@@ -543,10 +543,10 @@ header ul a.active::after {
 }
 
 .project-list-box .project-img-ver .main-box {
-  padding: 20px 0;
+  padding: 10px 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .project-list-box .project-img-ver .main-box .project-item {
