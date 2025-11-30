@@ -1,11 +1,24 @@
+/* Breakpoints */
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1200px;
+
+/* Colors */
+$color-primary: #504539;
+$color-point: #ff8d28;
+$color-base: #fefdf8;
+$color-gray: #aaa;
+$color-white: #ffffff;
+$color-black: #000000;
+
 :root {
   /* Color */
-  --primary-color: #504539;
-  --point-color: #ff8d28;
-  --base-color: #fefdf8;
-  --gray-color: #aaa;
-  --white: #ffffff;
-  --black: #000000;
+  --primary-color: #{$color-primary};
+  --point-color: #{$color-point};
+  --base-color: #{$color-base};
+  --gray-color: #{$color-gray};
+  --white: #{$color-white};
+  --black: #{$color-black};
 
   --border-color-soft: rgba(80, 69, 57, 0.6);
   --overlay-bg: rgba(0, 0, 0, 0.7);
