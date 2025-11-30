@@ -346,7 +346,7 @@ header > div {
   cursor: pointer;
 }
 
-header > ul {
+header ul {
   display: flex;
   align-items: center;
   gap: var(--gap-xxl);
