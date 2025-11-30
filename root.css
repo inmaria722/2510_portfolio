@@ -1,0 +1,60 @@
+:root {
+  /* Color */
+  --primary-color: #504539;
+  --point-color: #ff8d28;
+  --base-color: #fefdf8;
+  --gray-color: #aaa;
+  --white: #ffffff;
+  --black: #000000;
+
+  --border-color-soft: rgba(80, 69, 57, 0.6);
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --paper-texture-opacity: 0.15;
+
+  /* Font */
+  --font-main: "Pretendard", sans-serif;
+  --font-serif: "Nanum Myeongjo", serif;
+  --font-display-1: "ChiaroscuraTRIAL", serif;
+  --font-display-2: "Didot LT Std Headline", serif;
+  --font-display-3: "Georgia", serif;
+  --font-display-4: "Product Sans", sans-serif;
+  --font-display-5: "KakaoBigFont", sans-serif;
+
+  --text-xs: 0.875rem; /*14px*/
+  --text-sm: 1rem; /*16px*/
+  --text-md: 1.125rem; /*18px*/
+  --text-lg: 1.25rem; /*20px*/
+  --text-xl: 1.875rem; /*30px*/
+  --text-2xl: 2.125rem; /*34px*/
+  --text-display: 3.25rem; /*52px*/
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Containers */
+  --container-width: 1620px;
+  --section-padding-x: 100px;
+  --section-padding-y: 150px;
+
+  /* Spacing */
+  --gap-sm: 10px;
+  --gap-md: 20px;
+  --gap-lg: 40px;
+  --gap-xl: 50px;
+  --gap-xxl: 80px;
+
+  /* Border Radius */
+  --radius-sm: 10px;
+  --radius-md: 20px;
+  --radius-lg: 50px;
+  --radius-full: 550px;
+
+  /* Animation */
+  --ease-base: cubic-bezier(0.7, 0, 0.3, 1);
+  --transition-fast: 0.3s ease;
+  --transition-base: 0.4s ease;
+  --transition-slow: 0.7s ease;
+}
