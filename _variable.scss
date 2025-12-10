@@ -3,6 +3,12 @@ $breakpoint-mobile: 375px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1200px;
 
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
 /* Colors */
 $color-primary: #504539;
 $color-point: #ff8d28;
@@ -50,7 +56,9 @@ $color-black: #000000;
   /* Containers */
   --container-width: 1620px;
   --section-padding-x: 100px;
+  --section-tablet-padding-x: 50px;
   --section-padding-y: 150px;
+  --section-tablet-padding-y: 100px;
 
   /* Spacing */
   --gap-sm: 10px;

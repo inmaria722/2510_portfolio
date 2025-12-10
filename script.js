@@ -404,87 +404,89 @@ $(document).ready(function () {
   });
 
   // 스크롤리텔링
-  const $textBoxes = $(".project-box .con .left .text-box");
 
-  mySwiper = new Swiper(".mySwiper", {
-    direction: "vertical",
-    slidesPerView: 1,
-    spaceBetween: 30,
-    autoplay: false,
-    mousewheel: false,
-    allowTouchMove: false,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
-
-  // 가짜 스크롤 영역 만들기
-  if (mySwiper && mySwiper.slides.length > 0) {
-    const slideCount = mySwiper.slides.length;
-    const pinDuration = (slideCount - 1) * 500; // 슬라이드 1개당 500px씩 영역 확보
-    let lastIndex = 0;
-
-    const st = ScrollTrigger.create({
-      trigger: ".project-box",
-      pin: true, // 화면 고정
-      start: "top top",
-      end: () => "+=" + pinDuration, // 확보한 길이만큼 고정 유지
-      scrub: 0.4, // 부드럽게
-      snap: {
-        // 자석 효과로 끊어주기
-        snapTo: 1 / (slideCount - 1),
-        duration: 0.5,
-        ease: "power1.inOut",
+  if (window.innerWidth > 768) {
+    const $textBoxes = $(".project-box .con .left .text-box");
+    mySwiper = new Swiper(".mySwiper", {
+      direction: "vertical",
+      slidesPerView: 1,
+      spaceBetween: 30,
+      autoplay: false,
+      mousewheel: false,
+      allowTouchMove: false,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
       },
-      onUpdate: (self) => {
-        // 스크롤 진행률을 슬라이드 번호로 변환
-        const activeIndex = Math.round(self.progress * (slideCount - 1));
+    });
 
-        // 번호가 바뀌면 슬라이드 이동
-        if (activeIndex !== lastIndex) {
-          mySwiper.slideTo(activeIndex, 200);
-          if ($textBoxes && $textBoxes.length > 0) {
-            // 텍스트 박스도 같이 바꾸기
-            $textBoxes.removeClass("active");
-            $textBoxes.eq(activeIndex).addClass("active");
+    // 가짜 스크롤 영역 만들기
+    if (mySwiper && mySwiper.slides.length > 0) {
+      const slideCount = mySwiper.slides.length;
+      const pinDuration = (slideCount - 1) * 500; // 슬라이드 1개당 500px씩 영역 확보
+      let lastIndex = 0;
+
+      const st = ScrollTrigger.create({
+        trigger: ".project-box",
+        pin: true, // 화면 고정
+        start: "top top",
+        end: () => "+=" + pinDuration, // 확보한 길이만큼 고정 유지
+        scrub: 0.4, // 부드럽게
+        snap: {
+          // 자석 효과로 끊어주기
+          snapTo: 1 / (slideCount - 1),
+          duration: 0.5,
+          ease: "power1.inOut",
+        },
+        onUpdate: (self) => {
+          // 스크롤 진행률을 슬라이드 번호로 변환
+          const activeIndex = Math.round(self.progress * (slideCount - 1));
+
+          // 번호가 바뀌면 슬라이드 이동
+          if (activeIndex !== lastIndex) {
+            mySwiper.slideTo(activeIndex, 200);
+            if ($textBoxes && $textBoxes.length > 0) {
+              // 텍스트 박스도 같이 바꾸기
+              $textBoxes.removeClass("active");
+              $textBoxes.eq(activeIndex).addClass("active");
+            }
+
+            // 헤더 메뉴 불 켜기
+            if (!isNavigating) {
+              updateActiveSlide(activeIndex);
+            }
+
+            lastIndex = activeIndex;
           }
+        },
+      });
 
-          // 헤더 메뉴 불 켜기
-          if (!isNavigating) {
-            updateActiveSlide(activeIndex);
-          }
-
-          lastIndex = activeIndex;
+      // 역방향 제어
+      mySwiper.on("slideChange", function () {
+        if (!isNavigating) {
+          updateActiveSlide(mySwiper.realIndex);
         }
-      },
-    });
+        const activeIndex = mySwiper.activeIndex;
+        if (activeIndex === lastIndex) {
+          return;
+        }
+        if ($textBoxes && $textBoxes.length > 0) {
+          $textBoxes.removeClass("active");
+          $textBoxes.eq(activeIndex).addClass("active");
+        }
+        lastIndex = activeIndex;
 
-    // 역방향 제어
-    mySwiper.on("slideChange", function () {
-      if (!isNavigating) {
-        updateActiveSlide(mySwiper.realIndex);
-      }
-      const activeIndex = mySwiper.activeIndex;
-      if (activeIndex === lastIndex) {
-        return;
-      }
+        // 현재 슬라이드 번호를 다시 스크롤 위치로 계산
+        const newProgress = activeIndex / (slideCount - 1);
+        const newScrollPos = st.start + newProgress * pinDuration;
+
+        // 실제 스크롤바 위치로 이동
+        window.scrollTo(0, newScrollPos);
+      });
+
       if ($textBoxes && $textBoxes.length > 0) {
-        $textBoxes.removeClass("active");
-        $textBoxes.eq(activeIndex).addClass("active");
+        $textBoxes.eq(0).addClass("active");
       }
-      lastIndex = activeIndex;
-
-      // 현재 슬라이드 번호를 다시 스크롤 위치로 계산
-      const newProgress = activeIndex / (slideCount - 1);
-      const newScrollPos = st.start + newProgress * pinDuration;
-
-      // 실제 스크롤바 위치로 이동
-      window.scrollTo(0, newScrollPos);
-    });
-
-    if ($textBoxes && $textBoxes.length > 0) {
-      $textBoxes.eq(0).addClass("active");
     }
   }
 

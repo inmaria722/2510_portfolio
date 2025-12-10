@@ -141,6 +141,10 @@ section {
   overflow-x: hidden;
   background-color: var(--white);
   padding: 0 var(--section-padding-x);
+
+  @include tablet {
+    padding: 0 var(--section-tablet-padding-x);
+  }
 }
 
 .con {
@@ -148,6 +152,10 @@ section {
   width: 100%;
   padding: var(--section-padding-y) 0;
   margin: 0 auto;
+
+  @include tablet {
+    padding: var(--section-tablet-padding-y) 0;
+  }
 }
 
 .img-box {
@@ -164,16 +172,28 @@ img {
 
 .title-box {
   margin-bottom: var(--gap-xl);
+
+  @include tablet {
+    margin-bottom: var(--gap-lg);
+  }
 }
 
 .title-box > .title {
   font-size: var(--text-2xl);
   font-weight: var(--weight-semibold);
+
+  @include tablet {
+    font-size: var(--text-lg);
+  }
 }
 
 .title-box > .sub {
   font-size: var(--text-xl);
   font-weight: var(--weight-regular);
+
+  @include tablet {
+    font-size: var(--text-md);
+  }
 }
 /* ---------- base end ---------- */
 
@@ -182,6 +202,10 @@ img {
   display: flex;
   gap: 14px;
   font-size: var(--text-xs);
+
+  @include tablet {
+    gap: var(--gap-xs);
+  }
 }
 
 .p-btn-box .p-btn {
@@ -193,6 +217,11 @@ img {
 .p-btn-box .p-btn a {
   display: block;
   padding: 5px var(--gap-md);
+
+  @include tablet {
+    padding: 3px var(--gap-sm);
+    font-size: var(--text-xs);
+  }
 }
 /* ---------- custom start ---------- */
 
@@ -310,12 +339,20 @@ header {
   left: 0;
   z-index: 1000;
   background-color: var(--white);
+
+  @include tablet {
+    padding: var(--gap-md) var(--section-tablet-padding-x);
+  }
 }
 
 header > div {
   font-size: var(--text-lg);
   font-weight: var(--weight-medium);
   cursor: pointer;
+
+  @include tablet {
+    font-size: var(--text-md);
+  }
 }
 
 header ul {
@@ -324,6 +361,11 @@ header ul {
   gap: var(--gap-xxl);
   font-size: var(--text-md);
   font-weight: var(--weight-light);
+
+  @include tablet {
+    gap: var(--gap-md);
+    font-size: var(--text-sm);
+  }
 }
 
 header ul a {
@@ -362,14 +404,23 @@ header ul a.active::after {
 }
 
 .profile-box .main-box .left {
-  width: 390px;
+  width: 24%;
+
+  @include tablet {
+    width: 30%;
+  }
 }
 
 .profile-box .main-box .left .img-box {
   width: 100%;
-  height: 500px;
+  height: 65%;
+  aspect-ratio: 3/4;
   position: relative;
   margin-bottom: 15px;
+
+  @include tablet {
+    height: 30%;
+  }
 }
 
 .profile-box .main-box .left .img-box .star {
@@ -377,10 +428,14 @@ header ul a.active::after {
   top: -20px;
   left: -25px;
   opacity: 0.3;
+
+  @include tablet {
+    opacity: 0;
+  }
 }
 
 .profile-box .main-box .left .img-box .profile-img {
-  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -388,12 +443,21 @@ header ul a.active::after {
   margin-bottom: var(--gap-xl);
   font-size: var(--text-md);
   font-weight: var(--weight-semibold);
+
+  @include tablet {
+    font-size: var(--text-sm);
+    margin-bottom: var(--gap-md);
+  }
 }
 
 .profile-box .main-box .left .name span:last-child {
   margin-left: var(--gap-sm);
   opacity: 0.5;
   font-weight: var(--weight-regular);
+
+  @include tablet {
+    font-size: var(--text-xs);
+  }
 }
 
 .profile-box .main-box .left .desc-box {
@@ -402,6 +466,10 @@ header ul a.active::after {
   flex-direction: column;
   gap: 15px;
   font-weight: var(--weight-semibold);
+
+  @include tablet {
+    font-size: var(--text-xs);
+  }
 }
 
 .profile-box .main-box .left .desc-box span:last-child {
@@ -409,13 +477,25 @@ header ul a.active::after {
   line-height: 28px;
   opacity: 0.8;
   text-align: justify;
+
+  @include tablet {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .profile-box .main-box .right {
-  width: 1210px;
+  width: 76%;
   padding-left: 137px;
   display: flex;
   gap: var(--gap-sm);
+
+  @include tablet {
+    width: 70%;
+    padding-left: 40px;
+    flex-direction: column;
+    gap: var(--gap-md);
+  }
 }
 
 .profile-box .main-box .right .info-box {
@@ -425,6 +505,11 @@ header ul a.active::after {
   gap: var(--gap-md);
   font-size: var(--text-md);
   font-weight: var(--weight-regular);
+
+  @include tablet {
+    gap: var(--gap-lg);
+    font-size: var(--text-xs);
+  }
 }
 
 .profile-box .main-box .right .info-box .info {
@@ -437,6 +522,10 @@ header ul a.active::after {
   width: 116px;
   text-transform: capitalize;
   font-weight: var(--weight-semibold);
+
+  @include tablet {
+    width: 90px;
+  }
 }
 
 .profile-box .main-box .right .info-box .info .info-desc {
@@ -454,13 +543,34 @@ header ul a.active::after {
 .profile-box .main-box .right .info-box .info-desc > div > span:last-child {
   font-size: var(--text-sm);
   opacity: 0.5;
+
+  @include tablet {
+    font-size: var(--text-xs);
+  }
 }
 
 .profile-box .main-box .right .info-box .tool .info-desc {
   flex-direction: row;
   opacity: 0.5;
   font-size: var(--text-sm);
+
+  @include tablet {
+    font-size: var(--text-xs);
+    flex-direction: column;
+    margin-bottom: var(--gap-md);
+  }
 }
+
+.profile-box .main-box .right .info-box .tool .info-desc > p {
+  display: flex;
+  gap: var(--gap-md);
+
+  @include tablet {
+    gap: var(--gap-sm);
+    line-height: 14px;
+  }
+}
+
 /* ---------- profile-box end ---------- */
 
 /* ---------- project-list-box (img) start ---------- */
@@ -483,6 +593,10 @@ header ul a.active::after {
   align-items: flex-end;
   padding-bottom: var(--gap-lg);
   margin-bottom: 0;
+
+  @include tablet {
+    padding-bottom: var(--gap-md);
+  }
 }
 
 .project-list-box .project-title-box .title {
@@ -490,6 +604,10 @@ header ul a.active::after {
   display: flex;
   align-items: center;
   gap: var(--gap-sm);
+
+  @include tablet {
+    font-size: var(--text-xl);
+  }
 }
 
 .project-list-box .project-title-box .title > span:first-child {
@@ -510,6 +628,10 @@ header ul a.active::after {
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-full);
   overflow: hidden;
+
+  @include tablet {
+    transform: scale(0.8);
+  }
 }
 
 .project-list-box .project-title-box .list-btn button {
@@ -569,6 +691,10 @@ header ul a.active::after {
   overflow: hidden;
   position: relative;
   cursor: pointer;
+
+  @include tablet {
+    height: 140px;
+  }
 }
 
 .project-list-box .project-img-ver .project-item .img-box img {
@@ -594,11 +720,21 @@ header ul a.active::after {
   justify-content: space-between;
   padding: 25px 25px;
   z-index: 1;
+
+  @include tablet {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .project-list-box .project-img-ver .main-box .project-item:hover .desc-box {
   opacity: 1;
   visibility: visible;
+
+  @include tablet {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .project-list-box .project-img-ver .main-box .project-item .desc-box span {
@@ -656,6 +792,10 @@ header ul a.active::after {
   padding: var(--gap-lg) 30px;
   transition: all var(--transition-fast);
   cursor: pointer;
+
+  @include tablet {
+    padding: var(--gap-md) var(--gap-md);
+  }
 }
 
 .project-list-box .project-text-ver .main-box .t-project-item:not(:last-child) {
@@ -668,10 +808,19 @@ header ul a.active::after {
   gap: var(--gap-md);
   font-size: var(--text-sm);
   font-weight: var(--weight-regular);
+
+  @include tablet {
+    font-size: var(--text-xs);
+    gap: var(--gap-sm);
+  }
 }
 
 .project-list-box .project-text-ver .main-box .t-project-item .left .num {
   width: 87px;
+
+  @include tablet {
+    width: 40px;
+  }
 }
 
 .project-list-box
@@ -683,6 +832,10 @@ header ul a.active::after {
   font-size: var(--text-xl);
   font-weight: var(--weight-semibold);
   transition: all var(--transition-fast);
+
+  @include tablet {
+    font-size: var(--text-md);
+  }
 }
 
 .project-list-box
@@ -707,6 +860,10 @@ header ul a.active::after {
 .project-list-box .project-text-ver .main-box .t-project-item .right {
   display: block;
   font-size: var(--text-lg);
+
+  @include tablet {
+    font-size: var(--text-xs);
+  }
 }
 
 .project-list-box
@@ -769,7 +926,7 @@ header ul a.active::after {
   .t-project-item
   .p-btn:hover
   span {
-  color: var(--white) fff;
+  color: var(--white);
   transition-delay: 0.2s;
 }
 
@@ -797,6 +954,22 @@ header ul a.active::after {
   height: 100vh;
   background-color: transparent;
   overflow: hidden;
+
+  @include tablet {
+    height: auto !important;
+
+    .swiper-wrapper {
+      display: block;
+    }
+
+    .swiper-slide {
+      height: auto !important;
+      margin-bottom: var(--gap-xxl);
+      opacity: 1 !important;
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 
 .project-box .bg-paper {
@@ -811,6 +984,10 @@ header ul a.active::after {
   margin: 0 auto;
   padding: var(--section-padding-y) 0;
   height: 100%;
+
+  @include tablet {
+    padding: var(--section-tablet-padding-y) 0;
+  }
 }
 
 /* left */
@@ -818,6 +995,11 @@ header ul a.active::after {
   width: 390px;
   position: relative;
   height: 100%;
+
+  @include tablet {
+    width: 700px !important;
+    padding-right: var(--gap-md);
+  }
 }
 
 .project-box .con .left .text-box {
@@ -831,6 +1013,14 @@ header ul a.active::after {
   justify-content: space-between;
   opacity: 0;
   visibility: hidden;
+
+  @include tablet {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    margin-bottom: var(--gap-xxl);
+    height: 262px;
+  }
 }
 
 .project-box .con .left .text-box.active {
@@ -847,6 +1037,10 @@ header ul a.active::after {
   font-size: 70px;
   font-weight: var(--weight-regular);
   color: var(--primary-color);
+
+  @include tablet {
+    font-size: var(--text-xl);
+  }
 }
 
 .project-box .con .left .text-box:first-child h1 {
@@ -866,6 +1060,10 @@ header ul a.active::after {
   font-size: 62px;
   text-transform: lowercase;
   font-family: var(--font-display-3);
+
+  @include tablet {
+    font-size: var(--text-xl);
+  }
 }
 
 .project-box .con .left .text-box:nth-child(5) h1 {
@@ -875,18 +1073,30 @@ header ul a.active::after {
 .project-box .con .left .text-box:nth-child(6) h1 {
   font-weight: var(--weight-bold);
   font-size: 70px;
+
+  @include tablet {
+    font-size: var(--text-xl);
+  }
 }
 
 .project-box .con .left .text-box:nth-child(7) h1 {
   font-weight: var(--weight-regular);
   font-size: 100px;
   font-family: var(--font-display-4);
+
+  @include tablet {
+    font-size: var(--text-xl);
+  }
 }
 
 .project-box .con .left .text-box:nth-child(8) h1 {
   font-size: 64px;
   font-family: var(--font-display-5);
   font-weight: var(--weight-bold);
+
+  @include tablet {
+    font-size: var(--text-xl);
+  }
 }
 
 .project-box .con .left .text-box ul {
@@ -900,6 +1110,10 @@ header ul a.active::after {
   display: flex;
   gap: var(--gap-md);
   opacity: 0.9;
+
+  @include tablet {
+    font-size: var(--text-xs);
+  }
 }
 
 .project-box .con .left .text-box ul li strong {
@@ -965,6 +1179,10 @@ header ul a.active::after {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @include tablet {
+    height: 260px !important;
+  }
 }
 
 .project-box .con .right .project-item .line {
@@ -981,6 +1199,10 @@ header ul a.active::after {
 
 .project-box .con .right .project-item:hover .line {
   width: 915px;
+
+  @include tablet {
+    width: 340px;
+  }
 }
 
 .project-box .con .right .img-box {
@@ -1072,10 +1294,18 @@ footer {
   background-color: transparent;
   position: relative;
   padding: 0 var(--section-padding-x);
+
+  @include tablet {
+    padding: 0 var(--section-tablet-padding-x);
+  }
 }
 
 footer .con {
-  padding: var(--section-padding-x) 0;
+  padding: var(--section-padding-y) 0;
+
+  @include tablet {
+    padding: var(--section-tablet-padding-y) 0;
+  }
 }
 
 footer .bg-star-big {
@@ -1092,6 +1322,10 @@ footer .con .box-1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @include tablet {
+    height: 450px;
+  }
 }
 
 footer .con .box-1 .top {
@@ -1108,23 +1342,39 @@ footer .con .box-1 .top .top-left {
 footer .con .box-1 .top .top-left > span:first-child {
   font-size: 40px;
   font-weight: var(--weight-semibold);
+
+  @include tablet {
+    font-size: var(--text-xl);
+  }
 }
 
 footer .con .box-1 .top .top-left > span:last-child {
   font-size: var(--text-lg);
   font-weight: var(--weight-regular);
   opacity: 0.5;
+
+  @include tablet {
+    font-size: var(--text-md);
+  }
 }
 
 footer .con .box-1 .top .top-right {
   font-size: var(--text-lg);
   font-weight: var(--weight-regular);
   opacity: 0.5;
+
+  @include tablet {
+    font-size: var(--text-md);
+  }
 }
 
 footer .con .box-1 .bottom {
   font-size: 24px;
   font-weight: var(--weight-medium);
+
+  @include tablet {
+    font-size: var(--text-md);
+  }
 }
 
 footer .con .box-1 .bottom > div:first-child {
@@ -1134,6 +1384,10 @@ footer .con .box-1 .bottom > div:first-child {
 footer .con .box-1 .bottom > div > span:first-child {
   font-size: 22px;
   margin-right: var(--gap-sm);
+
+  @include tablet {
+    font-size: var(--text-md);
+  }
 }
 
 footer .con .box-2 {
@@ -1141,6 +1395,10 @@ footer .con .box-2 {
   border-top: 1px solid var(--primary-color);
   font-size: var(--text-md);
   font-weight: var(--weight-medium);
+
+  @include tablet {
+    font-size: var(--text-sm);
+  }
 }
 
 footer .con .box-2 span {
