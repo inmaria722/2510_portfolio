@@ -1215,10 +1215,14 @@ header ul a.active::after {
   left: var(--gap-sm);
   z-index: 10;
   width: 0px;
-  height: 1px;
+  height: 1.5px;
   background-color: var(--base-color);
   transition: all 0.6s ease;
   opacity: 0.6;
+}
+
+.project-box .con .right .project-item .t-line {
+  bottom: var(--gap-lg);
 }
 
 .project-box .con .right .project-item:hover .line {
@@ -1228,6 +1232,28 @@ header ul a.active::after {
   .project-box .con .right .project-item:hover .line {
     width: 340px;
   }
+}
+
+.project-box .right .project-item .desc {
+  position: absolute;
+  left: var(--gap-sm);
+  bottom: var(--gap-sm);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3 ease;
+  display: flex;
+  gap: 6px;
+}
+
+.project-box .right .project-item .desc span {
+  color: #fff;
+  font-size: var(--text-xs);
+}
+
+.project-box .right .project-item:hover .desc {
+  opacity: 1;
+  visibility: visible;
 }
 
 .project-box .con .right .img-box {
