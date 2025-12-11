@@ -114,27 +114,27 @@
 }
 @font-face {
   font-family: "ChiaroscuraTRIAL";
-  src: url("./chiaroscura-trial-webfont/ChiaroscuraTRIAL-Rg.woff") format("woff");
+  src: url("/chiaroscura-trial-webfont/ChiaroscuraTRIAL-Rg.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Didot LT Std Headline";
-  src: url("./transfonter.org-20250825-151240/DidotLTStd-Headline.woff2") format("woff2");
+  src: url("/transfonter.org-20250825-151240/DidotLTStd-Headline.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Georgia";
-  src: url("./georgia-2-webfont/georgiab.woff") format("woff");
+  src: url("/georgia-2-webfont/georgiab.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "Product Sans";
-  src: url("./product-sans-webfont/ProductSans-Regular.woff") format("woff");
+  src: url("/product-sans-webfont/ProductSans-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
